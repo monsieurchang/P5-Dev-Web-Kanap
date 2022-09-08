@@ -1,7 +1,17 @@
-let url= "http://localhost:3000/api/products/"
-.then((response) => response.json())
-    .then((nounours) => remplirListeProduits(nounours))
+let url= "http://localhost:3000/api/products"
 
+fetch(url)
+  .then(function(res) {
+    if (res.ok) {
+      return res.json();
+    }
+  })
+  .then(function(value) {
+    console.log(value);
+  })
+  .catch(function(err) {
+    // Une erreur est survenue
+  });
 
 
 
@@ -9,7 +19,7 @@ let url= "http://localhost:3000/api/products/"
 var request = new XMLHttpRequest();
 request.open('GET', requestURL, true);
 request.responseType = 'json';
-request.send();
+request.send(); 
 request.onload = function (){
     var allCouch = request.response;
     showCouchs(allCouch);
