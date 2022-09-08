@@ -1,95 +1,50 @@
-let url= "http://localhost:3000/api/products"
+console.log("hello")
+
+let url = "http://localhost:3000/api/products/"
+let couches = ""
 
 fetch(url)
-  .then(function(res) {
-    if (res.ok) {
-      return res.json();
-    }
+  .then(response => response.json())
+  .then(async function (res) {
+    couches = await res;
+    displayArticles(couches);
   })
-  .then(function(value) {
-    console.log(value);
-  })
-  .catch(function(err) {
-    // Une erreur est survenue
-  });
+  .catch(error => alert("Erreur : " + error));
 
 
+function displayArticles(array) {
+  for (let i = 0; i < array.length; i++) {
+    let product = array[i];
 
-/* var requestURL = "http://localhost:3000/api/products"
-var request = new XMLHttpRequest();
-request.open('GET', requestURL, true);
-request.responseType = 'json';
-request.send(); 
-request.onload = function (){
-    var allCouch = request.response;
-    showCouchs(allCouch);
-}*/
+    let section = document.querySelector('.items')
 
+    let aLink = document.createElement('a')
+    aLink.setAttribute('href', "./product.html2id=" + product._id)
 
+    let article = document.createElement('article')
 
-// // Affichage des produits
-// function showCouchs(productsSheet) {
-//     for (var i = 0; i < productsSheet.length; i++){
-//         var product = productsSheet[i];
-//         let allPanels = document.querySelector('.items');
+    let image = document.createElement('img')
+    image.setAttribute('src', product.imageUrl)
+    image.setAttribute("class", "item__img")
 
-//         // insertion du lien de chaque canapés
-//         var createLinkPanel = document.createElement('a');
-//         createLinkPanel.setAttribute('href', "./product.html?id=" + product._id);
-//         allPanels.appendChild(createLinkPanel);
+    let titleH3 = document.createElement('h3')
+    titleH3.setAttribute("class", "productName")
 
-//         // insertion des articles
-//         var createArticle = document.createElement('article');
-//         createLinkPanel.appendChild(createArticle);
-
-//         // insertion des images
-//         var createPict = document.createElement('img');
-//         createPict.setAttribute('src', product.imageUrl);
-//         createPict.setAttribute('alt', product.altTxt);
-//         createArticle.appendChild(createPict);
-    
-//         // insertion des noms dans h3
-//         var createH3 = document.createElement('h3');
-//         createH3.className = 'productName';
-//         createH3.textContent = product.name;
-//         createArticle.appendChild(createH3);
-
-//         // insertion des descriptions dans p
-//         var createP = document.createElement('p');
-//         createP.className = 'productDescription';
-//         createP.textContent = product.description;
-//         createArticle.appendChild(createP);
-//     }
-// }
+    let para = document.createElement('p')
+    para.setAttribute("class", "productDescription")
 
 
 
 
+    titleH3.textContent = product.name
 
-// function displayArticle(array) {
-//   for (let i = 0; i < array.length; i++) {
-//     console.log(data[0].name)
-//   }
-// }
-// displayArticle(products)
+    para.textContent = product.description
 
-// function displayArticle(array) {
-//   for (let i = 0; i < array.length; i++) {
-//     let newDiv = document.createElement("div")
-
-//     let img = document.createElement("img")
-//     let titleH3 = document.createElement("h3")
-//     titleH3.setAttribute('class', 'productName')
-//     let para = document.createElement('p')
-//     para.setAttribute('class', 'productDescription')
-
-//     img.src = `http://localhost:3000/images/kanap0${i + 1}.jpeg`
-
-//     newDiv.innerText += `${array[i].name}`
-
-//     newDiv.appendChild(img)
-
-//     document.body.appendChild(newDiv)
-//   }
-// }
-// displayArticle(products)
+    section.appendChild(aLink)
+    aLink.appendChild(article)
+    article.appendChild(image)
+    article.appendChild(titleH3)
+    article.appendChild(para)
+  }
+}
+displayArticles(couches)
