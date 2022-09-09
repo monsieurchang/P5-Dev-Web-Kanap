@@ -1,16 +1,22 @@
-console.log("hello")
-
 let url = "http://localhost:3000/api/products/"
 let couches = ""
 
 fetch(url)
-  .then(response => response.json())
+  .then(function (res) {
+    if (res.ok) {
+      return res.json()
+    }
+  })
   .then(async function (res) {
     let couches = await res;
     displayArticles(couches);
   })
-  .catch(error => alert("Erreur : " + error));
-
+  .catch(function (err) {
+    // Une erreur est survenue
+  })
+  .then(function (value) {
+    console.log(value)
+  })
 
 function displayArticles(array) {
   for (let i = 0; i < array.length; i++) {
