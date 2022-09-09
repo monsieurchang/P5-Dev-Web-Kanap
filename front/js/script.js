@@ -6,7 +6,7 @@ let couches = ""
 fetch(url)
   .then(response => response.json())
   .then(async function (res) {
-    couches = await res;
+    let couches = await res;
     displayArticles(couches);
   })
   .catch(error => alert("Erreur : " + error));
@@ -33,11 +33,7 @@ function displayArticles(array) {
     let para = document.createElement('p')
     para.setAttribute("class", "productDescription")
 
-
-
-
     titleH3.textContent = product.name
-
     para.textContent = product.description
 
     section.appendChild(aLink)
