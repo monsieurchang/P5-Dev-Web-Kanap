@@ -53,7 +53,6 @@ function buttonClicked() {
 function addToCart(id, qty, color) {
   let cart = localStorage.getItem('products')
   cart = JSON.parse(cart)
-  // let cartIsEmpty = true
 
   let productFeatures = {
     idSelected: id,
@@ -61,8 +60,13 @@ function addToCart(id, qty, color) {
     colorSelected: color,
   }
 
-  if (color == null || color == "" || qty == null || qty == "") { //alert if color/qty aren't selected
-    alert("Veuillez choisir une couleur et un nombre d'articles.")
+  if (color == null || color == "") { //alert if color isn't selected
+    alert("Veuillez choisir une couleur.")
+    return
+  }
+
+  if (qty == null || qty == "" || qty == 0 || qty > 100) { //qty alert
+    alert("Veuillez choisir un nombre d'articles compris entre 1 et 100.")
     return
   }
 
@@ -71,21 +75,17 @@ function addToCart(id, qty, color) {
       if ((cart[i].idSelected === productFeatures.idSelected) && (cart[i].colorSelected === productFeatures.colorSelected)) {
         (cart[i].quantitySelected = (+cart[i].quantitySelected) + (+productFeatures.quantitySelected))
         localStorage.setItem('products', JSON.stringify(cart))
-        return //ATTENTION !!
-        // cartIsEmpty = false
+        return
       }
     }
-    // if (cartIsEmpty) {
     cart.push(productFeatures)
-    // }
     localStorage.setItem('products', JSON.stringify(cart))
-  } else { //cart update
+  } else {
     let updatedCart = []
     updatedCart.push(productFeatures)
     localStorage.setItem('products', JSON.stringify(updatedCart))
   }
 }
-
 // function removeFromCart(product) {
 //   let basket = getBasket()
 
