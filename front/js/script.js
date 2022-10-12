@@ -1,16 +1,23 @@
 // Récupération des données depuis l'API
 let url = "http://localhost:3000/api/products/"
 let couches = []
-fetch(url)
-  .then(function (res) {
-    if (res.ok) {
-      return res.json()
-    }
-  })
-  .then(function (res) {
-    let couches = res;
-    displayArticles(couches)
-  })
+// fetch(url)
+//   .then(function (res) {
+//     if (res.ok) {
+//       return res.json()
+//     }
+//   })
+//   .then(function (res) {
+//     let couches = res
+//     displayArticles(couches)
+//   })
+
+async function main() {
+  const API = await fetch(url)
+  const json = await API.json()
+  displayArticles(json)
+}
+main()
 
 function displayArticles(array) {
   for (let i = 0; i < array.length; i++) {
