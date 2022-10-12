@@ -72,6 +72,7 @@ function addToCart(id, qty, color) {
 
   if (cart != null) { //if cart contains smth...
     for (i = 0; i < cart.length; i++) {
+      let maxQuantityPerColor = 100
       if ((cart[i].idSelected === productFeatures.idSelected) && (cart[i].colorSelected === productFeatures.colorSelected)) {
         (cart[i].quantitySelected = (+cart[i].quantitySelected) + (+productFeatures.quantitySelected))
         localStorage.setItem('products', JSON.stringify(cart))
@@ -86,9 +87,3 @@ function addToCart(id, qty, color) {
     localStorage.setItem('products', JSON.stringify(updatedCart))
   }
 }
-// function removeFromCart(product) {
-//   let basket = getBasket()
-
-// }
-
-// limiter quantité (totale) à 100 articles dans le panier par référence

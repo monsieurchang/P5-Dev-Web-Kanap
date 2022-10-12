@@ -3,7 +3,7 @@ let url = "http://localhost:3000/api/products/"
 let couches = []
 // fetch(url)
 //   .then(function (res) {
-//     if (res.ok) {
+//     if (res.ok) { 
 //       return res.json()
 //     }
 //   })
