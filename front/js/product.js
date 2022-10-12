@@ -53,7 +53,7 @@ function buttonClicked() {
 function addToCart(id, qty, color) {
   let cart = localStorage.getItem('products')
   cart = JSON.parse(cart)
-  let cartIsEmpty = true
+  // let cartIsEmpty = true
 
   let productFeatures = {
     idSelected: id,
@@ -70,12 +70,14 @@ function addToCart(id, qty, color) {
     for (i = 0; i < cart.length; i++) {
       if ((cart[i].idSelected === productFeatures.idSelected) && (cart[i].colorSelected === productFeatures.colorSelected)) {
         (cart[i].quantitySelected = (+cart[i].quantitySelected) + (+productFeatures.quantitySelected))
-        cartIsEmpty = false
+        localStorage.setItem('products', JSON.stringify(cart))
+        return //ATTENTION !!
+        // cartIsEmpty = false
       }
     }
-    if (cartIsEmpty) {
-      cart.push(productFeatures)
-    }
+    // if (cartIsEmpty) {
+    cart.push(productFeatures)
+    // }
     localStorage.setItem('products', JSON.stringify(cart))
   } else { //cart update
     let updatedCart = []
@@ -83,3 +85,10 @@ function addToCart(id, qty, color) {
     localStorage.setItem('products', JSON.stringify(updatedCart))
   }
 }
+
+// function removeFromCart(product) {
+//   let basket = getBasket()
+
+// }
+
+// limiter quantité (totale) à 100 articles dans le panier par référence
