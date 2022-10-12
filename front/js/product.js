@@ -66,7 +66,7 @@ function addToCart(id, qty, color) {
     return
   }
 
-  if (cart) { //if cart contains smth...
+  if (cart != null) { //if cart contains smth...
     for (i = 0; i < cart.length; i++) {
       if ((cart[i].idSelected === productFeatures.idSelected) && (cart[i].colorSelected === productFeatures.colorSelected)) {
         (cart[i].quantitySelected = (+cart[i].quantitySelected) + (+productFeatures.quantitySelected))
