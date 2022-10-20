@@ -24,7 +24,7 @@ function displayArticle(product) {
   //item colors
   let itemColors = document.getElementById('colors')
 
-  for (let i = 0; i < product.colors.length; i++) {
+  for (let i = 0 i < product.colors.length i++) {
     let colors = document.createElement('option')
     colors.setAttribute('value', product.colors[i])
     colors.textContent = product.colors[i]
@@ -46,11 +46,12 @@ button.addEventListener('click', buttonClicked) //when clicked = buttonClicked()
 function buttonClicked() {
   let colorSelected = document.querySelector('#colors')
   let quantitySelected = document.querySelector('#quantity')
+  let kanapSelectedPrice = document.querySelector('#price')
 
-  addToCart(productId, quantitySelected.value, colorSelected.value)
+  addToCart(productId, quantitySelected.value, colorSelected.value, kanapSelectedPrice)
 }
 
-function addToCart(id, qty, color) {
+function addToCart(id, qty, color, price) {
   let cart = localStorage.getItem('products')
   cart = JSON.parse(cart)
 
@@ -58,24 +59,35 @@ function addToCart(id, qty, color) {
     idSelected: id,
     quantitySelected: qty,
     colorSelected: color,
+    kanapSelectedPrice: price,
   }
 
-  if (color == null || color == "") { //alert if color isn't selected
+
+  // const { id, qty, color } = productFeatures
+  // idSelected = id
+  // quantitySelected = qty
+  // colorSelected = color
+
+
+  if ((color == null) || (color == "")) { //alert if color isn't selected
     alert("Veuillez choisir une couleur.")
     return
   }
 
-  if (qty == null || qty == "" || qty == 0 || qty > 100) { //qty alert
+  if ((qty == null) || (qty == "") || (qty == 0) || (qty > 100)) { //qty alert
     alert("Veuillez choisir un nombre d'articles compris entre 1 et 100.")
     return
   }
 
   if (cart != null) { //if cart contains smth...
     for (i = 0; i < cart.length; i++) {
-      let maxQuantityPerColor = 100
       if ((cart[i].idSelected === productFeatures.idSelected) && (cart[i].colorSelected === productFeatures.colorSelected)) {
         (cart[i].quantitySelected = (+cart[i].quantitySelected) + (+productFeatures.quantitySelected))
-        localStorage.setItem('products', JSON.stringify(cart))
+        if ((cart[i].quantitySelected) <= 100) {
+          localStorage.setItem('products', JSON.stringify(cart))
+        } else {
+          alert("La quantité maximale par produit est limitée à 100.")
+        }
         return
       }
     }
