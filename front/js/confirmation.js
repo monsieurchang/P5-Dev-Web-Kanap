@@ -1,6 +1,16 @@
 // Récupération des données depuis l'API
 let url = "http://localhost:3000/api/products/"
 let couches = []
+// fetch(url)
+//   .then(function (res) {
+//     if (res.ok) { 
+//       return res.json()
+//     }
+//   })
+//   .then(function (res) {
+//     let couches = res
+//     displayArticles(couches)
+//   })
 
 async function main() {
   const API = await fetch(url)
@@ -12,9 +22,14 @@ main()
 function displayArticles(array) {
   for (let i = 0; i < array.length; i++) {
     let product = array[i];
+
     let section = document.querySelector('.items')
+
     let aLink = document.createElement('a')
+    // aLink.setAttribute('href', "./product.html2id=" + product._id)
     aLink.setAttribute('href', "./product.html?id=" + product._id)
+    //<a href="./product.html?id=42">
+    // product.html?id=42
 
     let article = document.createElement('article')
 
