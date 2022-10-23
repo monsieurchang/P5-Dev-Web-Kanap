@@ -1,9 +1,8 @@
 let str = window.location.href
 let url = new URL(str)
-let productId = url.searchParams.get("id")
+let productId = url.searchParams.get('id')
 
-//fetch
-fetch("http://localhost:3000/api/products/" + productId)
+fetch('http://localhost:3000/api/products/' + productId)
   .then((response) => response.json())
   .then((product) => {
     displayArticle(product)
@@ -30,7 +29,6 @@ function displayArticle(product) {
 
   //item colors
   let itemColors = document.getElementById('colors')
-
   for (let i = 0; i < product.colors.length; i++) {
     let colors = document.createElement('option')
     colors.setAttribute('value', product.colors[i])
@@ -60,18 +58,14 @@ function displayArticle(product) {
       idSelected: id,
       quantitySelected: qty,
       colorSelected: color,
-
       kanapName: name,
       kanapPrice: price,
       kanapDescription: description,
       kanapImage: image,
     }
 
-    console.log('productId : ' + productId)
-    console.log('id : ' + id)
-
     if ((color == null) || (color == "")) { //alert if color isn't selected
-      alert("Veuillez choisir une couleur.")
+      alert('Veuillez choisir une couleur.')
       return
     }
 
@@ -87,7 +81,7 @@ function displayArticle(product) {
           if ((cart[i].quantitySelected) <= 100) {
             localStorage.setItem('products', JSON.stringify(cart))
           } else {
-            alert("La quantité maximale par produit est limitée à 100.")
+            alert('La quantité maximale par produit est limitée à 100.')
           }
           return
         }
