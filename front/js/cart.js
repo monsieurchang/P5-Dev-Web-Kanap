@@ -86,11 +86,12 @@ function editItemQuantity(products) {
                     productFeatures.colorSelected === items.dataset.color
             )
             productFeatures.quantitySelected = +(event.target.value)
-            if ((productFeatures.quantitySelected) <= 100) {
+
+            if (((productFeatures.quantitySelected) <= 100) && ((productFeatures.quantitySelected) > 0)) {
                 localStorage.setItem('products', JSON.stringify(products))
                 cartTotalPrice(products)
             } else {
-                alert('La quantité maximale par produit est limitée à 100.')
+                alert("Veuillez choisir un nombre d'articles compris entre 1 et 100.")
             }
         })
     })
@@ -224,7 +225,6 @@ orderForm.addEventListener('submit', (event) => {
         fetch('http://localhost:3000/api/products/order', {
             method: 'POST',
             headers: {
-                // Accept: "application/json",
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(order),
