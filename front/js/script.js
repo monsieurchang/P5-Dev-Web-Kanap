@@ -1,4 +1,6 @@
-// Récupération des données depuis l'API
+/* 3. INSÉRER LES PRODUITS DANS LA PAGE D'ACCUEIL */
+
+/* Récupération des données depuis l'API */
 let url = "http://localhost:3000/api/products/"
 let couches = []
 
@@ -9,6 +11,9 @@ async function main() {
 }
 main()
 
+/* Création d'un <article>-type par canapé. Cette "fiche"
+accueillera les différentes caractéristiques propres à
+chaque produit : nom, illustration, etc. */
 function displayArticles(array) {
   for (let i = 0; i < array.length; i++) {
     let product = array[i];
