@@ -80,7 +80,7 @@ function displayArticle(product) {
       return
     }
     /* Force la sélection d'une quantité */
-    if ((qty == null) || (qty == "") || (qty == 0) || (qty > 100)) { //qty alert
+    if ((qty == null) || (qty == "") || (qty == 0) || (qty > 100) || (qty < 0)) { //qty alert
       alert("Veuillez choisir un nombre d'articles compris entre 1 et 100.")
       return
     }
@@ -103,6 +103,7 @@ function displayArticle(product) {
       }
       cart.push(productFeatures)
       localStorage.setItem('products', JSON.stringify(cart))
+      alert('Produit(s) bien ajouté(s) au panier.')
     } else {
       let updatedCart = []
       alert('Produit(s) bien ajouté(s) au panier.')
