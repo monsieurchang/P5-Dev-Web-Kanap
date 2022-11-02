@@ -45,9 +45,9 @@ function displayArticle(product) {
   let button = document.querySelector('#addToCart') //html button call
   button.addEventListener('click', buttonClicked) //when clicked = buttonClicked()
 
-  /* Le bouton va ajouter les caractéristiques choisies
-  au local storage (LS) pour permettre une validation du panier sous
-  certaines conditions. */
+  /* Le bouton va permettre de valider les caractéristiques
+  choisies à ajouter au local storage (LS) sous certaines
+  conditions. */
   function buttonClicked() {
     let colorSelected = document.querySelector('#colors')
     let quantitySelected = document.querySelector('#quantity')
