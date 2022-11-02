@@ -11,6 +11,8 @@ async function main() {
 }
 main()
 
+console.log(couches)
+
 /* Création d'un <article>-type par canapé. Cette "fiche"
 accueillera les différentes caractéristiques propres à
 chaque produit : nom, illustration, etc. */
